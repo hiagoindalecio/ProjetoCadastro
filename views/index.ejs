@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascripts/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/javascripts/CODE.js"></script>
+    <script type="text/javascript" src="/javascripts/ajax.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Cadastro</title>
+</head>
+<body onload="carregarEstados()">
+    <h1>Cadastro de Pessoas</h1>
+    <br>
+    <hr>
+    <a href="/" class="btn btn-primary">Logout</a>
+    <br><br><br>
+    <h4>Cadastro</h4>
+    <fieldset id="formCadastro" class="forms">
+        <form action="/cadastrar-pessoa" method="POST" onsubmit="return validacao(this)">
+            <div id="campos">
+                <label for="nome" class="labels">nome: </label>
+                <input type="text" class="form-control" name="nome" id="nome" />
+                <br>
+                <label for="senha" class="labels">Senha: </label>
+                <input type="password" class="form-control" name="sobrenome" id="sobrenome" />
+                <br>
+                <label for="cpf" class="labels">CPF: </label>
+                <input type="text" class="form-control" name="cpf" id="cpf" />
+                <br>
+                <label for="telefone" class="labels">Telefone: </label>
+                <input type="tel" class="form-control" name="telefone" id="telefone" />
+                <br>
+                <div>
+                    <label for="estado" class="labels">Estado:</label>
+                    <select name="estado" class="form-control" onchange="carregarCidades()" id="slcEstado"></select>
+                </div>
+                <br>
+                <div>
+                    <label for="cidade" class="labels">Cidade:</label>
+                    <select name="cidade" class="form-control" id="slcCidade"></select>
+                </div>
+                <br>
+                <label for="endereco" class="labels">Endereço: </label>
+                <input type="text" class="form-control" name="endereco" id="endereco" />
+            </div>
+            <hr>
+            <input type="submit" value="Cadastrar" class="btn btn-outline-dark">
+        </form>
+    </fieldset>
+    <br>
+    <h4>Buscar</h4>
+    <fieldset>
+        <form action="/pesquisar" method="GET" class="forms">
+            <label for="nome" class="label">Nome: </label>
+            <input type="text" class="form-control pesquisar" name="nome">
+            <input type="submit" class="btn btn-outline-dark" value="buscar">
+            <br>
+        </form>
+    </fieldset>
+    <br>
+    <h4>Pessoas cadastradas</h4>
+    <fieldset id="formCadastrados" class="forms">
+        <table id="registros" class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <% for(i = 0; i < pessoas.length; i++) { %>
+                <tr id="<%=pessoas[i].cpf%>">
+                    <td><%= pessoas[i].nome %></td>
+                    <td><%= pessoas[i].sobrenome %></td>
+                    <td><%= pessoas[i].cpf %></td>
+                    <td><%= pessoas[i].telefone %></td>
+                    <td><%= pessoas[i].endereco %></td>
+                    <td> <a href="/editar" class="edit-buttom">Editar</a></ttdh>
+                    <td> <a href="#" onclick="excluir('<%=pessoas[i].cpf%>')" class="delete-buttom">Excluir</a></td>
+                </tr>
+            <% } %>
+        </table>
+        <hr>
+        <input type="button" value="Salvar" id="btnSalvar" style="display: none;" class="btn btn-outline-dark">
+    </fieldset>
+</body>
+</html>

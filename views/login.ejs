@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascripts/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/javascripts/CODE.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Login</title>
+</head>
+<body class="login">
+    <h1>Login</h1>
+    <hr>
+    <fieldset id="formLogin" class="forms">
+        <legend>Digite seus dados:</legend>
+        <form action="/principal" method="POST" onsubmit="return login(this)">
+            <div id="campos">
+                <label for="id" class="labels">ID: </label>
+                <input type="text" class="form-control" name="id" id="id" />
+                <br>
+                <label for="senha" class="labels">Senha: </label>
+                <input type="text" class="form-control" name="senha" id="senha" />
+            </div>
+            <hr>
+            <input type="submit" value="Login" class="btn btn-outline-dark">
+        </form>
+</body>
+</html>
